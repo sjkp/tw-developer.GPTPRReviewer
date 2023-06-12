@@ -1,0 +1,71 @@
+{
+  "id": "54bfc437-996c-4844-9f68-cd33e7a56682",
+  "name": "GPTPRReviewer",
+  "friendlyName": "Review PR by GPT",
+  "description": "A task for PR auto review using Azure OpenAI",
+  "author": "TwDeveloper",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "visibility": [
+    "Build"
+  ],
+  "demands": [],
+  "version": {
+    "Major": "0",
+    "Minor": "6",
+    "Patch": "58"
+  },
+  "minimumAgentVersion": "1.95.0",
+  "instanceNameFormat": "GPT PR Reviewer $(message)",
+  "inputs": [
+    {
+      "name": "api_key",
+      "type": "string",
+      "label": "OpenAi API key",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Api key of OpenAi/Azure OpenAI."
+    }, 
+    {
+      "name": "api_key_source",
+      "type": "pickList",
+      "label": "API key source",
+      "defaultValue": "openai",
+      "required": true,
+      "helpMarkDown": "Select an option from the list",
+      "options": {
+        "openai": "OpenAI",
+        "azureopenai": "AzureOpenAI"
+      }
+    },
+    {
+      "name": "aoai_endpoint",
+      "type": "string",
+      "label": "Azure OpenAI(AOAI) API endpoint",
+      "defaultValue": "https://{XXXXXXXX}.openai.azure.com/openai/deployments/{ModelName}/chat/completions?api-version=2023-03-15-preview",
+      "required": false,
+      "helpMarkDown": "Azure open Api endpoint."
+    },
+    {
+      "name": "comment_language",
+      "type": "pickList",
+      "label": "Comment Language",
+      "defaultValue": "en-US",
+      "required": true,
+      "helpMarkDown": "Select an option from the list",
+      "options": {
+        "en-US": "en-US",
+        "zh-TW": "zh-TW", 
+        "zh-CN" : "zh-CN",
+        "ja-JP" : "ja-JP",
+        "ko-KR" : "ko-KR",
+        "fr-CA" : "fr-CA" 
+      }
+    }         
+  ],
+  "execution": {
+    "Node10": {
+      "target": "review.js"
+    }
+  }
+}
